@@ -16,7 +16,7 @@
 
         <div class=" d-flex justify-content-between align-items-center my-4">
             <h3>Student Create</h3>
-            <a class=" btn btn-danger" href="">back</a>
+            <a class=" btn btn-danger" href="index.html">back</a>
         </div>
 
         <form action="" class=" p-5 border rounded-2 bg-dark text-light">
@@ -63,7 +63,17 @@
             "address" : address
         }
 
-       console.log(student);
+       let response = await fetch("http://localhost:3000/students",{
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify(student)
+       })
+
+       if(response.ok){
+           window.location.href = "index.html";
+       }
     }
 </script>
 </html>
