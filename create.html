@@ -40,12 +40,30 @@
             </div>
 
             <div class="button-group">
-                <button class=" btn btn-outline-success">Create</button>
-                <button class=" btn btn-outline-danger">Reset</button>
+                <button type="button" onclick="createStudent()" class=" btn btn-outline-success">Create</button>
+                <button type="reset" class=" btn btn-outline-danger">Reset</button>
             </div>
 
         </form>
 
     </div>
 </body>
+<script>
+    const createStudent = async () => {
+
+        let id   = Date.now();
+        let name = document.getElementById("name").value;
+        let gender = document.getElementById("gender").value;
+        let address = document.getElementById("address").value;
+
+        let student = {
+            "id" : id,
+            "name" : name,
+            "gender" : gender,
+            "address" : address
+        }
+
+       console.log(student);
+    }
+</script>
 </html>
