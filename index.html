@@ -57,8 +57,8 @@
                 <td>${student.gender}</td>
                 <td>${student.address}</td>
                 <td>
-                    <button type="button" class="btn btn-primary">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <a href="edit.html?id=${student.id}" class="btn btn-primary">Edit</a>
+                    <button onclick="deleteStudent(${student.id})" type="button" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
             `;
@@ -69,6 +69,26 @@
     }
 
     studentRander();
+
+
+    const deleteStudent = async (id) => {
+        if(confirm("Do you want to delete?")){
+            const response = await fetch(`http://localhost:3000/students/${id}`,{
+                method : "DELETE",
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            });
+            if(response.ok){
+                //reload
+                window.location.href = "index.html";
+            }
+        }
+    }
+
+
+
+   
 
    
 

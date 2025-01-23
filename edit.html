@@ -15,7 +15,7 @@
     <div class="  container">
 
         <div class=" d-flex justify-content-between align-items-center my-4">
-            <h3>Student Create</h3>
+            <h3>Student Update</h3>
             <a class=" btn btn-danger" href="index.html">back</a>
         </div>
 
@@ -40,7 +40,7 @@
             </div>
 
             <div class="button-group">
-                <button type="button" onclick="createStudent()" class=" btn btn-outline-success">Create</button>
+                <button type="button" onclick="createStudent()" class=" btn btn-outline-success">Update</button>
                 <button type="reset" class=" btn btn-outline-danger">Reset</button>
             </div>
 
@@ -49,6 +49,34 @@
     </div>
 </body>
 <script>
+
+    const editData = async () => {
+
+        let url = window.location.href; //get current url
+        //url = http://127.0.0.1:5500/edit.html?id=1737539414280
+
+        
+        let id = url.split("=")[1];
+        
+        // => ["http://127.0.0.1:5500/edit.html?id","1737539414280"]
+
+        let response = await fetch(`http://localhost:3000/students/${id}`,{
+            method : "GET"
+        });
+
+        let data = await response.json();
+
+        document.getElementById("name").value = data.name;
+        document.getElementById("gender").value = data.gender;
+        document.getElementById("address").value = data.address;
+
+
+    }
+
+
+    editData();
+    
+
     const createStudent = async () => {
 
         let id   = Date.now();
