@@ -19,10 +19,10 @@
             <a class=" btn btn-danger" href="index.html">back</a>
         </div>
 
-        <form action="" class=" p-5 border rounded-2 bg-dark text-light">
+        <form class=" p-5 border rounded-2 bg-dark text-light">
 
             <div class="form-group mb-3">
-                <input type="text" id="student_id" >
+                <input type="hidden" id="student_id" >
                 <label for="">Name</label>
                 <input type="text" id="name" class=" form-control shadow-none">
             </div>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="button-group">
-                <button type="button" onclick="createStudent()" class=" btn btn-outline-success">Update</button>
+                <button type="button" onclick="updateStudent()" class=" btn btn-outline-success">Update</button>
                 <button type="reset" class=" btn btn-outline-danger">Reset</button>
             </div>
 
@@ -60,6 +60,11 @@
         let id = url.split("=")[1];  //convert string to array and then get the data of index 1
         
         // => ["http://127.0.0.1:5500/edit.html?id","1737539414280"]
+
+        //checking if not id in url 
+        if(!id){
+            window.location.href = "index.html";
+        }
 
         let response = await fetch(`http://localhost:3000/students/${id}`,{
             method : "GET"
@@ -80,30 +85,29 @@
     
 
     const updateStudent = async () => {
-
-        let id   = Date.now();
+        let id = document.getElementById("student_id").value;
         let name = document.getElementById("name").value;
         let gender = document.getElementById("gender").value;
         let address = document.getElementById("address").value;
 
         let student = {
-            "id" : id.toString(),
+            "id" : id,
             "name" : name,
             "gender" : gender,
             "address" : address
         }
 
-       let response = await fetch("http://localhost:3000/students",{
-            method : "POST",
+        let response = await fetch(`http://localhost:3000/students/${id}`,{
+            method : "PUT",
             headers : {
                 "Content-Type" : "application/json"
             },
             body : JSON.stringify(student)
-       })
+        });
 
-       if(response.ok){
-           window.location.href = "index.html";
-       }
+
+        window.location.href = "index.html";
+
     }
 </script>
 </html>

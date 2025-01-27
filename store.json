@@ -14,24 +14,17 @@
     },
     {
       "id": "1737623395371",
-      "name": "Seangly",
+      "name": "Veasna",
       "gender": "Male",
       "address": "Kompot"
     },
     {
       "id": "1737623525692",
-      "name": "Phument",
-      "gender": "Male",
-      "address": "Kompong Thom"
-    },
-    {
-      "id": "1737623554526",
-      "name": "Phument",
+      "name": "Pot Phument",
       "gender": "Male",
       "address": "Kompong Thom"
     }
   ],
-  
   "teachers": [
     {
       "id": "1",
